@@ -2,7 +2,11 @@
 public class Account {
 	private double balance;
 	
-	public void setBalance(double balance){
+	Account (double balance){
+		this.balance=balance;
+	}
+	
+	void setBalance(double balance){
 		this.balance=balance;
 	}
 	
