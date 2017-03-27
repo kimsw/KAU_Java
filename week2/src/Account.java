@@ -1,12 +1,12 @@
 
-public class Account {
+public abstract class Account {
 	private double balance;
 	
-	Account (double balance){
+	public Account (double balance){
 		this.balance=balance;
 	}
 	
-	void setBalance(double balance){
+	protected void setBalance(double balance){
 		this.balance=balance;
 	}
 	
@@ -28,4 +28,6 @@ public class Account {
 			System.out.print("error!!");
 	}
 	
+	public abstract void passTime(int month);
+	public abstract double getWithdrawableAccount();
 }
