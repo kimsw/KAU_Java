@@ -25,11 +25,11 @@ public class CheckingAccount extends Account{
 			setBalance(getBalance() * (1+loan_interest)*month);
 	}
 	
-	public void isBankrupted(){
-		if(getBalance()<(-1*credit_limit)){
-			//System.out.printf("balance: %f\n limit: %f",getBalance(),credit_limit);
-			System.out.println("파산");
-		}
+	public boolean isBankrupted(){
+		if(getBalance()<(-1*credit_limit))
+			return true;
+		else
+			return false;
 	}
 	
 	public double getWithdrawableAccount(){
@@ -37,6 +37,11 @@ public class CheckingAccount extends Account{
 			return (getBalance() + credit_limit);
 		else
 			return 0;
+	}
+	
+	@Override
+	public double EstimateAmount(int month){
+		return getWithdrawableAccount();
 	}
 	
 }
