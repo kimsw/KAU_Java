@@ -37,7 +37,12 @@ public class SavingsAccount extends Account {
 	   }
 
 	@Override
-	public double EstimateAmount(int month){
+	public double EstimateValue(int month){
 		return getBalance()*Math.pow((1+interest),month);
 	}
+	
+	@Override
+	public String toString(){
+		return String.format( "SavingsAccount_Balance: %.2f", getBalance());
+	} 
 }

@@ -1,4 +1,4 @@
 
 public interface Valuable {
-	double EstimateAmount(int month);
+	double EstimateValue(int month);
 }

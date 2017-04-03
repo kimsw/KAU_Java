@@ -40,8 +40,14 @@ public class CheckingAccount extends Account{
 	}
 	
 	@Override
-	public double EstimateAmount(int month){
-		return getWithdrawableAccount();
+	public double EstimateValue(int month){
+		if(getBalance()>0)
+			return (getBalance() * (1+interest*month));
+		else
+			return (getBalance() * (1+loan_interest*month));
 	}
-	
+	@Override
+	public String toString(){
+		return String.format( "CheckingAccount_Balance: %.2f", getBalance());
+	}
 }
