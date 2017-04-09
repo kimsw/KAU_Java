@@ -21,13 +21,15 @@ public abstract class Account implements Valuable {
 			System.out.print("error!!");
 	}
 	
-	public void debit(double debitAmount){
-		if(debitAmount > 0)
+	public void debit(double debitAmount) throws Exception{
+		if(debitAmount > 0){
 			balance -= debitAmount;
+		}
 		else
 			System.out.print("error!!");
 	}
 	
 	public abstract void passTime(int month);
+	public abstract void passTime();
 	public abstract double getWithdrawableAccount();
 }

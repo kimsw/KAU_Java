@@ -8,7 +8,12 @@ public class Human implements Valuable {
 	}
 	
 	@Override
-	public double EstimateValue(int month){
+	public double estimateValue(int month){
+		return Double.POSITIVE_INFINITY;
+	}
+	
+	@Override
+	public double estimateValue(){
 		return Double.POSITIVE_INFINITY;
 	}
 	

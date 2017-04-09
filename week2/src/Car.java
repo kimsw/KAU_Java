@@ -18,8 +18,12 @@ public class Car implements Valuable{
 	}
 	
 	@Override
-	public double EstimateValue(int month){
-		return getPrice()*0.8*Math.pow(de_rate, month);
+	public double estimateValue(int month){
+		return price*0.8*Math.pow(de_rate, month);
+	}
+	@Override
+	public double estimateValue(){
+		return price*0.8*de_rate;
 	}
 	
 	@Override

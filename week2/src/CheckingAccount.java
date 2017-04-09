@@ -1,5 +1,5 @@
 
-public class CheckingAccount extends Account{
+public class CheckingAccount extends Account {
 	private double credit_limit, interest, loan_interest;
 	
 	
@@ -11,11 +11,15 @@ public class CheckingAccount extends Account{
 		
 	}
 	
-	public void deposit(double balance){
-		if(getBalance()-balance<(-1*credit_limit))
-			System.out.println("Debit amount exceeded account balance.");
-		else
+	@Override
+	public void debit(double balance) throws Exception{
+		if(balance < 0)
+			throw new Exception("음수입력!");
+		else if(getBalance()-balance>=(-1*credit_limit)){
 			setBalance(getBalance()-balance);
+		}
+		else
+			throw new Exception("Debit amount exceeded account balance.");
 	}
 	
 	public void passTime(int month){
@@ -23,6 +27,13 @@ public class CheckingAccount extends Account{
 			setBalance(getBalance() * (1+interest)*month);
 		else if(getBalance()<0)
 			setBalance(getBalance() * (1+loan_interest)*month);
+	}
+	
+	public void passTime(){
+		if(getBalance()>=0)
+			setBalance(getBalance() * (1+interest));
+		else
+			setBalance(getBalance() * (1+loan_interest));
 	}
 	
 	public boolean isBankrupted(){
@@ -40,14 +51,24 @@ public class CheckingAccount extends Account{
 	}
 	
 	@Override
-	public double EstimateValue(int month){
+	public double estimateValue(int month){
 		if(getBalance()>0)
 			return (getBalance() * (1+interest*month));
 		else
 			return (getBalance() * (1+loan_interest*month));
 	}
+	
+	@Override
+	public double estimateValue() {
+		if(getBalance()>=0)
+			return (getBalance() * (1+interest));
+		else
+			return (getBalance()*(1+loan_interest));
+	}
+	
 	@Override
 	public String toString(){
 		return String.format( "CheckingAccount_Balance: %.2f", getBalance());
 	}
+	
 }
