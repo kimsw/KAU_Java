@@ -10,7 +10,7 @@ public class SavingsAccount extends Account {
 		this.contract_month = 12;
 		this.expiration_date = false;
 	}
-	
+
 	@Override
 	public void debit(double balance) throws Exception{
 		if(getWithdrawableAccount()>0){
@@ -22,12 +22,14 @@ public class SavingsAccount extends Account {
 			throw new Exception("아직 출금할 수 없습니다.");
 	}
 	
+	@Override
 	public double getWithdrawableAccount(){
-		if(contract_month == 0)
+		if(contract_month <= 0)
 			return getBalance();
 		else
 			return 0;
 	}
+	
 	
 	public void passTime(int month){
 	      if(contract_month > 0)
@@ -37,6 +39,7 @@ public class SavingsAccount extends Account {
 	         expiration_date = true;
 	      }
 	}
+	
 	
 	public void passTime(){
 		if(contract_month > 0)
@@ -51,10 +54,10 @@ public class SavingsAccount extends Account {
 	public double estimateValue(int month){
 		return getBalance()*Math.pow((1+interest),month);
 	}
+	
 	@Override
 	public double estimateValue() {
-		int month = 1;
-		return (getBalance() * Math.pow((1+interest), month));
+		return getBalance() * (1+interest);
 	}
 	
 	@Override
